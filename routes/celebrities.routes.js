@@ -18,17 +18,17 @@ router.post('/create', async (req, res) => {
     }
 })
 
-router.get('/:celebrityId', async (req, res) => {
+router.get('/celebrities', async (req, res) => {
     try {
-        const celebrities = await Celebrity.findById(req.params.celebrityId)
+        const celebrities = await Celebrity.find(req.params.celebrityId)
         console.log(celebrities)
         if (!celebrities) {
             console.log(error)
         } else {
-            res.render('celebrities/celebrities', celebrities)
+            res.render('celebrities/celebrities', {celebrities})
         }
     } catch (error) {
-        console.log(error) 
+        console.error(error) 
     }
     })
 module.exports = router
