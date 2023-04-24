@@ -17,5 +17,19 @@ router.post('/create', async (req, res) => {
         console.log(error)
     }
 })
+
+router.get('/:celebrityId', async (req, res) => {
+    try {
+        const celebrities = await Celebrity.findById(req.params.celebrityId)
+        console.log(celebrities)
+        if (!celebrities) {
+            console.log(error)
+        } else {
+            res.render('celebrities/celebrities', celebrities)
+        }
+    } catch (error) {
+        console.log(error) 
+    }
+    })
 module.exports = router
 
